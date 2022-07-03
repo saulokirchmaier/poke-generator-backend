@@ -1,73 +1,120 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Gerador de Pokemons - Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Teste monocard
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### Saulo Kirchmaier Teixeira
 
-## Description
+Aplicação backend realizado como um teste para a empresa [Monocard](https://monocard.com.br/).
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Teste
 
-## Installation
+#### Proposta
 
-```bash
-$ npm install
-```
+- Criar um mini aplicatico web que gera um pokemon da geração 1 aleatório e permite nomeá-lo.
 
-## Running the app
+#### Frontend
 
-```bash
-# development
-$ npm run start
+- Tela para gerar o pokemon
+- Tela com a lista de pokemons gerados
 
-# watch mode
-$ npm run start:dev
+#### Backend
 
-# production mode
-$ npm run start:prod
-```
+- API:
+  1. Criar pokemons
+  2. Listar pokemons criados
 
-## Test
+#### Banco de Dados
 
-```bash
-# unit tests
-$ npm run test
+- Pokemons criados com:
+  1. id
+  2. nome
+  3. pokemonId
+  4. timestamo
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
-```
+### Desenvolvido backend
 
-## Support
+Para o backend foi desenvolvido um API utilizando o [Nest](https://nestjs.com/), framework baseado em [Node](https://nodejs.org/en/), e o banco de dados [Mongo](https://www.mongodb.com/).
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Nesta API encontramos as seguintes rotas:
 
-## Stay in touch
+  1. POST - criação de pokemons, recebe um body com `pokemonId, nome e url(de uma imagem do pokemon)`
+  2. GET - busca por todos os pokemons adicionados no banco
+  3. GET - /id - busca por pokemon específico, recebe o parametro com o id do pokemon no banco
+  4. PATCH - /id - atualiza o nome de um pokemon específico, recebe o parametro com o id do pokemon no banco
+  5. DELETE - /id - deleta um pokemon específico, recebe o parametro com o id do pokemon no banco
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Instalação
 
-## License
+#### Dependências
 
-Nest is [MIT licensed](LICENSE).
+Para um funcionamento correto da apliação é necessário que o computador tenha um banco de dados do [Mongo](https://www.mongodb.com/) rodando.
+
+- Sugestão, utilize um container [Docker](https://www.docker.com/) para gerar uma imagem do Mongo em sua máquina
+  - Para instalar o Docker siga as instruções [aqui](https://docs.docker.com/desktop/linux/install/)
+  - Para criar uma imagem do Mongo siga as intruções [aqui](https://hub.docker.com/_/mongo) ou [aqui](https://balta.io/blog/mongodb-docker), normalmente a porta utilizada para a instalação do Mongo é `27017`, utilize ela ou anote a porta utilizada.
+
+Verifique que você possui o node instalado em sua máquina com o comendo no terminal
+
+  ```
+  node --version
+  ```
+
+a versão utilizada para esta aplicação foi a `16.13.1`, assim certifique que tenha instalado essa versão ou superior, para intalar o Node clique [aqui](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+#### Clonando o repositório
+
+- Caso tenha uma chave SSH cadastrada faça um clone deste repositório com o comando no terminal:
+
+  ```
+  git clone git@github.com:saulokirchmaier/poke-generator-backend.git
+  ```
+
+- Caso não possua uma chave SSH utilize o comando a baixo no terminal:
+
+  ```
+  git clone https://github.com/saulokirchmaier/poke-generator-backend.git
+  ```
+
+#### Iniciando a API
+
+- Crie um arquivo `.env` na raiz do projeto com:
+
+  ```
+  HTTP_PORT=9000
+  HTTP_HOST=localhost
+  DATA_BASE=pokemon
+  MONGODB_URL=mongodb://localhost:27017
+  MONGODB_DATABASE=pokemon
+  ```
+
+- Pelo terminal, acessse a pasta e instale as dependências de desenvolvimento:
+
+  ```
+  npm install
+  ```
+
+- Com as dependências instaladas inicie a aplicação 
+
+  ```
+  npm run start
+  ```
+  
+  - Caso tudo ocorra bem, devera ser logado:
+
+  ```
+  Application is running on: http://[::1]:9000
+  ```
+
+    - a aplicação também pode ser acessada por `http://localhost:9000`
+
+- Com o backend em funcionamento siga abra o aplicativo frontend, para isso siga as instruções [aqui](https://github.com/saulokirchmaier/poke-generator-frontend)
+
+
+#### Agradecimentos
+
+Obrigado por ter testado está aplicação
+
+Um grande abraço.
+
+Saulo Kirchmaier Teixeira.
