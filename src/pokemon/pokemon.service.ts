@@ -9,7 +9,6 @@ import { ObjectID } from 'mongodb';
 
 import { CreatePokemonDTO } from './dto/create-pokemon.dto';
 import { PokemonDTO } from './dto/pokemon.dto';
-import { UpdatePokemonDTO } from './dto/update-pokemon.dto';
 import { Pokemon } from './entities/pokemon.entity';
 
 @Injectable()
@@ -43,7 +42,7 @@ export class PokemonService {
     }
   }
 
-  async findOne(id: string) /*: Promise<PokemonDTO>*/ {
+  async findOne(id: string): Promise<PokemonDTO> {
     try {
       const doc = await this.pokemonRepository.findOneOrFail({
         where: { _id: new ObjectID(id) },
@@ -55,7 +54,7 @@ export class PokemonService {
     }
   }
 
-  async update(id: string, name: string) {
+  async update(id: string, name: string): Promise<PokemonDTO> {
     try {
       const pokemon = await this.pokemonRepository.findOne({
         where: { _id: new ObjectID(id) },
@@ -75,7 +74,7 @@ export class PokemonService {
     }
   }
 
-  async remove(id: string) {
+  async remove(id: string): Promise<string> {
     try {
       const pokemon = await this.pokemonRepository.findOne({
         where: { _id: new ObjectID(id) },
